@@ -1,0 +1,29 @@
+<div class="col-md-6 offset-md-3">
+<h3>Dodaj ucenika</h3>
+
+<form (ngSubmit) = onSubmit()>
+    <div class="form-group">
+        <label>Ime</label>
+        <input type="text" class="form-control" id="ime"
+        [(ngModel)] = "ucenik.ime" name="ime">
+    </div>
+    <div class="form-group">
+        <label>Prezime</label>
+        <input type="text" class="form-control" id="prezime"
+        [(ngModel)] = "ucenik.prezime" name="prezime">
+    </div>
+    <div class="form-group">
+        <label>Usmena ocjena</label>
+        <input type="text" class="form-control" id="usmenaOcjena"
+        [(ngModel)] = "ucenik.usmenaOcjena" name="usmenaOcjena">
+    </div>
+    <div class="form-group">
+        <label>Pismena ocjena</label>
+        <input type="text" class="form-control" id="pismenaOcjena"
+        [(ngModel)] = "ucenik.pismenaOcjena" name="pismenaOcjena">
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+
+</form>
+</div>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.elektronskidnevnik.springboot.repository.UcenikRepository;
+import net.elektronskidnevnik.springboot.service.UcenikService;
 import net.elektronskidnevnik.springboot.exception.ResourceNotFoundException;
 import net.elektronskidnevnik.springboot.model.Ucenik;
 
@@ -27,66 +28,54 @@ public class UcenikController {
 
 	@Autowired
 	private UcenikRepository ucenikRepository;
+	@Autowired
+	private UcenikService ucenikService;
 
 	@GetMapping("/ucenici")
 	public List<Ucenik> getAllUcenici() {
 
-		List<Ucenik> ucenici = ucenikRepository.findAll();
+		return ucenikService.listUcenici();
 
-		for (int i = 0; i < ucenici.size(); i++) {
-
-			if (ucenici.get(i).getUsmenaOcjena() == null) {
-				ucenici.get(i).setUsmenaOcjena(0);
-			}
-
-		}
-		for (int i = 0; i < ucenici.size(); i++) {
-
-			if (ucenici.get(i).getPismenaOcjena() == null) {
-				ucenici.get(i).setPismenaOcjena(0);
-			}
-
-		}
-		return ucenici;
 	}
-	
+
 	@PostMapping("/ucenici")
 	public Ucenik createUcenik(@RequestBody Ucenik ucenik) {
 		return ucenikRepository.save(ucenik);
 	}
-	
+
 	@GetMapping("/ucenici/{id}")
 	public ResponseEntity<Ucenik> getUcenikById(@PathVariable Long id) {
-		
-		Ucenik ucenik = ucenikRepository.findById(id).
-				orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id:" + id));
+
+		Ucenik ucenik = ucenikRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id:" + id));
 		return ResponseEntity.ok(ucenik);
 	}
-	
+
 	@PutMapping("/ucenici/{id}")
-	public ResponseEntity<Ucenik> updateUcenik(@PathVariable Long id, @RequestBody Ucenik ucenikDetails){
-		
-		Ucenik ucenik = ucenikRepository.findById(id).
-				orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id: " + id));
-		
+	public ResponseEntity<Ucenik> updateUcenik(@PathVariable Long id, @RequestBody Ucenik ucenikDetails) {
+
+		Ucenik ucenik = ucenikRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id: " + id));
+
 		ucenik.setIme(ucenikDetails.getIme());
 		ucenik.setPrezime(ucenikDetails.getPrezime());
 		ucenik.setPismenaOcjena(ucenikDetails.getPismenaOcjena());
 		ucenik.setUsmenaOcjena(ucenikDetails.getUsmenaOcjena());
-		
+
 		Ucenik updatedUcenik = ucenikRepository.save(ucenik);
-		
+
 		return ResponseEntity.ok(updatedUcenik);
-		
+
 	}
-	
+
 	@DeleteMapping("/ucenici/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteUcenik(@PathVariable Long id){
-		
-		Ucenik ucenik = ucenikRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ucenik sa id: " + " ne postoji."));
-		
+	public ResponseEntity<Map<String, Boolean>> deleteUcenik(@PathVariable Long id) {
+
+		Ucenik ucenik = ucenikRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Ucenik sa id: " + " ne postoji."));
+
 		ucenikRepository.delete(ucenik);
-		
+
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);

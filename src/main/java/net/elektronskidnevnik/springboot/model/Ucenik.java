@@ -1,6 +1,5 @@
 package net.elektronskidnevnik.springboot.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,14 +13,12 @@ public class Ucenik {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(name = "ime")
 	private String ime;
-	@Column(name = "prezime")
 	private String prezime;
-	@Column(name = "usmena_ocjena")
 	private Integer usmenaOcjena;
-	@Column(name = "pismena_ocjena")
 	private Integer pismenaOcjena;
+	private Double zakljucenaOcjena;
+	private boolean zakljucena;
 	
 	public Ucenik() {
 		
@@ -68,6 +65,23 @@ public class Ucenik {
 	public void setPismenaOcjena(Integer pismenaOcjena) {
 		this.pismenaOcjena = pismenaOcjena;
 	}
+
+	public Double getZakljucenaOcjena() {
+		return zakljucenaOcjena;
+	}
+
+	public void setZakljucenaOcjena(Double zakljucenaOcjena) {
+		this.zakljucenaOcjena = zakljucenaOcjena;
+	}
+
+	public boolean isZakljucena() {
+		return zakljucena;
+	}
+
+	public void setZakljucena(boolean zakljucena) {
+		this.zakljucena = zakljucena;
+	}
+	
 	
 	
 	
