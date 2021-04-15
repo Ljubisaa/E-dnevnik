@@ -1,6 +1,5 @@
 package net.elektronskidnevnik.springboot.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,16 +33,16 @@ public class UcenikController {
 	@GetMapping("/ucenici")
 	public List<Ucenik> getAllUcenici() {
 
-		return ucenikService.listUcenici();
+		return ucenikService.listUceniciService();
 
 	}
 
-	@PostMapping("/ucenici")
+	@PostMapping("/ucenik")
 	public Ucenik createUcenik(@RequestBody Ucenik ucenik) {
-		return ucenikRepository.save(ucenik);
+		return ucenikRepository.save(ucenikService.set0ToOcjena(ucenik));
 	}
 
-	@GetMapping("/ucenici/{id}")
+	@GetMapping("/ucenik/{id}")
 	public ResponseEntity<Ucenik> getUcenikById(@PathVariable Long id) {
 
 		Ucenik ucenik = ucenikRepository.findById(id)
@@ -51,34 +50,16 @@ public class UcenikController {
 		return ResponseEntity.ok(ucenik);
 	}
 
-	@PutMapping("/ucenici/{id}")
+	@PutMapping("/ucenik/{id}")
 	public ResponseEntity<Ucenik> updateUcenik(@PathVariable Long id, @RequestBody Ucenik ucenikDetails) {
 
-		Ucenik ucenik = ucenikRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id: " + id));
-
-		ucenik.setIme(ucenikDetails.getIme());
-		ucenik.setPrezime(ucenikDetails.getPrezime());
-		ucenik.setPismenaOcjena(ucenikDetails.getPismenaOcjena());
-		ucenik.setUsmenaOcjena(ucenikDetails.getUsmenaOcjena());
-
-		Ucenik updatedUcenik = ucenikRepository.save(ucenik);
-
-		return ResponseEntity.ok(updatedUcenik);
-
+		return ucenikService.updateUcenikService(id, ucenikDetails);
 	}
 
-	@DeleteMapping("/ucenici/{id}")
+	@DeleteMapping("/ucenik/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteUcenik(@PathVariable Long id) {
 
-		Ucenik ucenik = ucenikRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Ucenik sa id: " + " ne postoji."));
-
-		ucenikRepository.delete(ucenik);
-
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);
+		return ucenikService.deleteUcenikService(id);
 	}
 
 }
