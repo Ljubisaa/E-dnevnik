@@ -8,6 +8,8 @@ import { ExponentiaStrengthPipe } from './ucenik-list/exponential-strength.pipe'
 import { CreateUcenikComponent } from './create-ucenik/create-ucenik.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateUcenikComponent } from './update-ucenik/update-ucenik.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { UpdateUcenikComponent } from './update-ucenik/update-ucenik.component';
     UcenikListComponent,
     ExponentiaStrengthPipe,
     CreateUcenikComponent,
-    UpdateUcenikComponent
+    UpdateUcenikComponent,
+    LoginComponent,
+    LogoutComponent
     ],
   imports: [
     BrowserModule,
