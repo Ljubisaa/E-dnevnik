@@ -1,4 +1,4 @@
-<h2>Lista učenika, 1/1 Gimnazija</h2>
+<h2>Lista učenika</h2>
 <table class="table table-striped"> 
     <thead>
         <tr>
@@ -23,7 +23,8 @@
 </td>
 </ng-template>
 <td>
-    <button (click)="updateUcenik(ucenik.id)" class="btn btn-info">Izmjeni</button>
+    <button (click)="viewUcenik(ucenik.id)" class="btn btn-info">Vidi</button>
+    <button (click)="updateUcenik(ucenik.id)" class="btn btn-info" style="margin-left: 10px;">Izmjeni</button>
     <button (click)="deleteUcenik(ucenik.id)" class="btn btn-danger" style="margin-left: 10px;">Izbrisi</button>
 </td>
     </tr>

@@ -27,6 +27,10 @@ export class UcenikListComponent implements OnInit {
 this.router.navigate(['update-ucenik', id]);
   }
 
+  viewUcenik(id: number){
+    this.router.navigate(['ucenik-grid', id]);
+      }
+
  deleteUcenik(id: number){
    this.ucenikService.deleteUcenik(id).subscribe(data => {
     console.log(data); 

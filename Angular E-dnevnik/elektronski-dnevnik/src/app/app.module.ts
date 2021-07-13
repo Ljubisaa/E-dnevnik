@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { UpdateUcenikComponent } from './update-ucenik/update-ucenik.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UcenikGridComponent } from './ucenik-grid/ucenik-grid.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LogoutComponent } from './logout/logout.component';
     CreateUcenikComponent,
     UpdateUcenikComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UcenikGridComponent
     ],
   imports: [
     BrowserModule,

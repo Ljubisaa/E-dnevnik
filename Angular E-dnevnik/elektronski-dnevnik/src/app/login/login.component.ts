@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   checkLogin(){
     if(this.loginService.authenticate(this.username, this.password)){
-      this.router.navigate(['']);
+      this.router.navigate(['ucenici']);
       this.invalidLogin = false;
     }
     else{
