@@ -1,20 +1,33 @@
-<div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
-        
+<!-- Section-->
+<div class="col-lg-9">
+    <div class="row">
+        <div class="col-12 col-md-4">
 
-            <!-- Product details-->
-            <div class="card-body">
-                <!-- Product name-->
-                <h4 class="card-title">
-                    <a href="#">Lkfsdf</a>
-                </h4>
-                <h5>45</h5>
-                <p class="card-text">dgsdmgdskn</p>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary float-right">Add cart</button>
-            </div>
-        
+<div class="thumbnail">
+<img src="assets/img/ucenik.jpeg" width="250" height="300" />
+</div>
 
+        </div>
+        <div class="col-12 col-md-8">
+            
+            <h3>{{ucenik.ime}} {{ucenik.prezime}}</h3>
+            <hr/>
+
+            <h6>Pismena ocjena: {{ucenik.pismenaOcjena}}</h6>
+            <hr/>
+
+            
+
+            <h6>Usmena ocjena: {{ucenik.usmenaOcjena}}</h6>
+            <hr/>
+
+            <h5>Zakljucena ocjena: <strong>{{ucenik.zakljucenaOcjena}}</strong></h5>
+            <hr/>
+
+            <a routerLink="/ucenici" class="btn btn-success">
+                 Back
+              </a> 
+    
+        </div>
     </div>
 </div>

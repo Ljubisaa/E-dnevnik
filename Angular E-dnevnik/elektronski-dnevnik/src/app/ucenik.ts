@@ -1,3 +1,5 @@
+import { Razred } from "./razred";
+
 export class Ucenik {
     id!: number;
     ime!: string;
@@ -6,5 +8,5 @@ export class Ucenik {
     pismenaOcjena!: number;
     zakljucenaOcjena!: number;
     zakljucena!: boolean;
-
+    razred!: Razred;
 }

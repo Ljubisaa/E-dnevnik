@@ -3,7 +3,6 @@ package net.elektronskidnevnik.springboot.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.elektronskidnevnik.springboot.repository.UcenikRepository;
 import net.elektronskidnevnik.springboot.service.UcenikService;
-import net.elektronskidnevnik.springboot.exception.ResourceNotFoundException;
 import net.elektronskidnevnik.springboot.model.Ucenik;
 
 @RestController
@@ -25,10 +22,12 @@ import net.elektronskidnevnik.springboot.model.Ucenik;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UcenikController {
 
-	@Autowired
-	private UcenikRepository ucenikRepository;
-	@Autowired
 	private UcenikService ucenikService;
+
+	public UcenikController(UcenikService ucenikService) {
+		super();
+		this.ucenikService = ucenikService;
+	}
 
 	@GetMapping("/ucenici")
 	public List<Ucenik> getAllUcenici() {
@@ -39,16 +38,16 @@ public class UcenikController {
 
 	@PostMapping("/ucenik")
 	public Ucenik createUcenik(@RequestBody Ucenik ucenik) {
-		return ucenikRepository.save(ucenikService.set0ToOcjena(ucenik));
+		
+		return ucenikService.save(ucenik);
 	}
-
+	
 	@GetMapping("/ucenik/{id}")
 	public ResponseEntity<Ucenik> getUcenikById(@PathVariable Long id) {
 
-		Ucenik ucenik = ucenikRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id:" + id));
-		return ResponseEntity.ok(ucenik);
+		return this.ucenikService.getUcenici(id);
 	}
+
 
 	@PutMapping("/ucenik/{id}")
 	public ResponseEntity<Ucenik> updateUcenik(@PathVariable Long id, @RequestBody Ucenik ucenikDetails) {
@@ -61,5 +60,18 @@ public class UcenikController {
 
 		return ucenikService.deleteUcenikService(id);
 	}
+	
+	@GetMapping("/ucenici/razred/{id}")
+	public List<Ucenik> getUcenikByRazredId(@PathVariable Long id){
+		
+		return ucenikService.getUcenikByRazredId(id);
+	}
+	
+	@GetMapping("/ucenici/ime/{keyword}")
+	public List<Ucenik> getUcenikByImeContaining(@PathVariable String keyword){
+		
+		return ucenikService.getUcenikByImeContaining(keyword);
+	}
+
 
 }

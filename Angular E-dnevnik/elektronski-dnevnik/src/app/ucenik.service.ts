@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ucenik } from './ucenik';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,14 @@ export class UcenikService {
   constructor(private httpClient: HttpClient) { 
   }
 
-  getUceniciList(): Observable<Ucenik[]>{
-    return this.httpClient.get<Ucenik[]>(`${this.baseURL}`);
+  getUceniciList(theRazredId: number): Observable<Ucenik[]>{
+    const searchUrl = `${this.baseURL}/razred/${theRazredId}`;
+    return this.httpClient.get<Ucenik[]>(`${searchUrl}`);
+  }
+
+  searchUcenici(keyword: string): Observable<Ucenik[]>{
+    const searchUrl = `${this.baseURL}/ime/${keyword}`;
+    return this.httpClient.get<Ucenik[]>(`${searchUrl}`);
   }
 
   createUcenik(ucenik: Ucenik): Observable<Object>{
@@ -33,4 +40,5 @@ export class UcenikService {
   deleteUcenik(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURLUcenik}/${id}`);
   }
+
 }

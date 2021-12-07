@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,21 @@ import net.elektronskidnevnik.springboot.repository.UcenikRepository;
 @Service
 public class UcenikService {
 
-	@Autowired
 	private UcenikRepository ucenikRepository;
+	
+	
+	public UcenikService(UcenikRepository ucenikRepository) {
+		super();
+		this.ucenikRepository = ucenikRepository;
+	}
+	
+	public List<Ucenik> getUcenikByRazredId(Long id){
+		return ucenikRepository.findByRazredId(id);
+	}
+	
+	public List<Ucenik> getUcenikByImeContaining(String keyword){
+		return ucenikRepository.findByImeContaining(keyword);
+	}
 
 	public List<Ucenik> listUceniciService() {
 		List<Ucenik> ucenici = ucenikRepository.findAll();
@@ -89,8 +101,21 @@ public class UcenikService {
 		return ResponseEntity.ok(updatedUcenik);
 	}
     
+
+
+	public ResponseEntity<Ucenik> getUcenici(Long id) {
+		Ucenik ucenik = ucenikRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Ucenik ne postoji sa ovim id:" + id));
+		return ResponseEntity.ok(ucenik);
+	}
+
+	public Ucenik save(Ucenik ucenik) {
+		set0ToOcjena(ucenik);
+		ucenikRepository.save(ucenik);	
+		return ucenik;
+	}
 	//Dodavanje vrijednosti nula ocjenama prilikom kreiranja ucenika(ako mu je ocjena null, tj ako nema ocjenu), i sa nulom idu u bazu
-	public Ucenik set0ToOcjena(Ucenik ucenik) {
+	private Ucenik set0ToOcjena(Ucenik ucenik) {
 		
 		if(ucenik.getPismenaOcjena() == null) {
 			ucenik.setPismenaOcjena(0);

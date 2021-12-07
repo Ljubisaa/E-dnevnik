@@ -1,33 +1,47 @@
-<h2>Lista učenika</h2>
-<table class="table table-striped"> 
-    <thead>
-        <tr>
-        <th>Ime</th>
-        <th>Prezime</th>
-        <th>Usmena ocjena</th>
-        <th>Pismena ocjena</th>
-        <th>Zakljucena ocjena</th>
-        <th>Opcije</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor = "let ucenik of ucenici">
-<td> {{ucenik.ime}} </td>
-<td> {{ucenik.prezime}} </td>
-<td> {{ucenik.usmenaOcjena | myNumberFormatter}} </td>
-<td> {{ucenik.pismenaOcjena | myNumberFormatter}} </td>
-<td *ngIf="ucenik.zakljucena && klikZakljuciti; else crtica"> {{ucenik.zakljucenaOcjena | number:'1.0-0'}} </td>
-<ng-template #crtica>
-<td> 
-    - 
-</td>
-</ng-template>
-<td>
-    <button (click)="viewUcenik(ucenik.id)" class="btn btn-info">Vidi</button>
-    <button (click)="updateUcenik(ucenik.id)" class="btn btn-info" style="margin-left: 10px;">Izmjeni</button>
-    <button (click)="deleteUcenik(ucenik.id)" class="btn btn-danger" style="margin-left: 10px;">Izbrisi</button>
-</td>
-    </tr>
-</tbody>
-</table>
-<button (click)="zakljuciti()" class="btn btn-info" style="margin-left: 680px;">Zakljuci ocjene</button>
+<div class="row">
+    <div class="col-lg-2">
+        <h4>Razredi:</h4>
+
+        <app-razred></app-razred>
+
+    </div>
+    <div class="col-lg-9">
+        <h2>Lista učenika</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Usmena ocjena</th>
+                    <th>Pismena ocjena</th>
+                    <th>Zakljucena ocjena</th>
+                    <th>Opcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ucenik of ucenici">
+                    <td> {{ucenik.ime}} </td>
+                    <td> {{ucenik.prezime}} </td>
+                    <td> {{ucenik.usmenaOcjena | myNumberFormatter}} </td>
+                    <td> {{ucenik.pismenaOcjena | myNumberFormatter}} </td>
+                    <td *ngIf="ucenik.zakljucena && klikZakljuciti; else crtica"> {{ucenik.zakljucenaOcjena |
+                        number:'1.0-0'}} </td>
+                    <ng-template #crtica>
+                        <td>
+                            -
+                        </td>
+                    </ng-template>
+                    <td>
+                        <button (click)="viewUcenik(ucenik.id)" class="btn btn-info">Vidi</button>
+                        <button (click)="updateUcenik(ucenik.id)" class="btn btn-info"
+                            style="margin-left: 3px;">Izmjeni</button>
+                        <button (click)="deleteUcenik(ucenik.id)" class="btn btn-danger"
+                            style="margin-left: 3px;">Izbrisi</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="zakljuciti()" class="btn btn-info" style="margin-left: 680px;">Zakljuci ocjene</button>
+        <div *ngIf="ucenici?.length == 0" class="col-md-12 alert alert-warning mt-2">No students found</div>
+    </div>
+</div>

@@ -8,9 +8,8 @@ import { ExponentiaStrengthPipe } from './ucenik-list/exponential-strength.pipe'
 import { CreateUcenikComponent } from './create-ucenik/create-ucenik.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateUcenikComponent } from './update-ucenik/update-ucenik.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { UcenikGridComponent } from './ucenik-grid/ucenik-grid.component';
+import { RazredComponent } from './razred/razred.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +18,8 @@ import { UcenikGridComponent } from './ucenik-grid/ucenik-grid.component';
     ExponentiaStrengthPipe,
     CreateUcenikComponent,
     UpdateUcenikComponent,
-    LoginComponent,
-    LogoutComponent,
-    UcenikGridComponent
+    RazredComponent,
+    SearchComponent
     ],
   imports: [
     BrowserModule,
