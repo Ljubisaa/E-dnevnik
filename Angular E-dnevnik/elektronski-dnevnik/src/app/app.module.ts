@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { UpdateUcenikComponent } from './update-ucenik/update-ucenik.component';
 import { RazredComponent } from './razred/razred.component';
 import { SearchComponent } from './search/search.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,18 @@ import { SearchComponent } from './search/search.component';
     CreateUcenikComponent,
     UpdateUcenikComponent,
     RazredComponent,
-    SearchComponent
+    SearchComponent,
+    NavbarComponent,
+    SignupComponent,
+    LoginComponent
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
