@@ -1,5 +1,46 @@
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-    <img src="assets/img/logo_sscjovanducic.png" width="25%">
+<mat-toolbar color="primary">
+    <a routerLink="/home">
+        <img src="assets/img/logo_sscjovanducic.png" width="80%">
+    </a>
+    <span class="example-spacer"></span>
+
+
+    <li class="nav-link">
+        <a *ngIf="isLoggedin" [routerLink]="'/ucenici'" mat-icon-button class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon">
+            Lista ucenika </a>
+    </li>
+    <li class="nav-link">
+        <a *ngIf="isLoggedin" [routerLink]="'/create-ucenik'" mat-icon-button class="example-icon mr20 ml20"
+            aria-label="Example icon-button with share icon">
+            Dodaj ucenika </a>
+    </li>
+
+    <span class="example-spacer"></span>
+    <app-search *ngIf="isLoggedin"></app-search>
+    <span class="example-spacer"></span>
+
+    <a *ngIf="!isLoggedin" [routerLink]="'/login'" mat-icon-button class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon">
+    Login
+  </a>
+  <a *ngIf="!isLoggedin" [routerLink]="'/signup'" mat-icon-button class="example-icon mr20 ml20"
+    aria-label="Example icon-button with share icon">
+    Register </a>
+  <a (click)="logout()" *ngIf="isLoggedin" mat-icon-button class="example-icon mr20 ml20"
+    aria-label="Example icon-button with heart icon">
+    Logout </a>
+  <button *ngIf="isLoggedin && user" mat-icon-button class="example-icon mr20 ml20"
+    aria-label="Example icon-button with heart icon">
+    {{ user.username }} </button>
+</mat-toolbar>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+   <a routerLink="home" routerLinkActive="active"> <img src="assets/img/logo_sscjovanducic.png"  width="80%">
+    </a>
     <app-search></app-search>
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -8,6 +49,16 @@
         <li class="nav-item">
             <a routerLink="create-ucenik" routerLinkActive="active" class="nav-link">Dodaj ucenika</a>
         </li>
-
     </ul>
-</nav>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a routerLink="login" class="nav-link">Login</a>
+        </li>
+        <li *ngIf="!login.isLogedIn()" class="nav-item">
+            <a routerLink="signup" class="nav-link">Register</a>
+        </li>  
+        <li *ngIf="login.isLogedIn()" class="nav-item">
+            <a class="nav-link">Logout</a>
+        </li>       
+    </ul>
+</nav> -->

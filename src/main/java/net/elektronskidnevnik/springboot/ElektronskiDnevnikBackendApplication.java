@@ -1,7 +1,5 @@
 package net.elektronskidnevnik.springboot;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,16 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import net.elektronskidnevnik.springboot.service.UserService;
 
-import net.elektronskidnevnik.springboot.model.Role;
-import net.elektronskidnevnik.springboot.model.User;
-import net.elektronskidnevnik.springboot.model.UserRole;
+
 
 @SpringBootApplication
 public class ElektronskiDnevnikBackendApplication implements CommandLineRunner {
 
 	@Autowired
 	UserService userService;
-
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ElektronskiDnevnikBackendApplication.class, args);
 	}
@@ -31,17 +28,17 @@ public class ElektronskiDnevnikBackendApplication implements CommandLineRunner {
 
 //		User user = new User();
 //
-//		user.setFirstName("Sandra");
+//		user.setFirstName("Ljubisa");
 //		user.setLastName("Savic");
-//		user.setUsername("Sandraa");
-//		user.setPassword("sandra123");
-//		user.setEmail("sandra@gsg.com");
+//		user.setUsername("Ljube");
+//		user.setPassword(this.bCryptPasswordEncoder.encode("ljubisa1"));
+//		user.setEmail("ljube@gsg.com");
 //		user.setProfile("default.png");
 //
 //		Role role1 = new Role();
 //
-//		role1.setRoleId(45L);
-//		role1.setRoleName("NORMAL");
+//		role1.setRoleId(44L);
+//		role1.setRoleName("ADMIN");
 //
 //		Set<UserRole> userRoleSet = new HashSet<>();
 //		UserRole userRole = new UserRole();
