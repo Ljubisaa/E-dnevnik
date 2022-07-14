@@ -25,8 +25,8 @@ export class UcenikService {
     return this.httpClient.get<Ucenik[]>(`${searchUrl}`);
   }
 
-  createUcenik(ucenik: Ucenik): Observable<Object>{
-    return this.httpClient.post(`${this.baseURLUcenik}`, ucenik)
+  createUcenik(ucenik: any): Observable<Object>{
+    return this.httpClient.post(`${this.baseURLUcenik}`, ucenik);
   }
 
   getUcenikById(id: number): Observable<Ucenik>{

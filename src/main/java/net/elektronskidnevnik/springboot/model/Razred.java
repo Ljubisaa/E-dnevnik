@@ -1,11 +1,13 @@
 package net.elektronskidnevnik.springboot.model;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,13 +29,13 @@ import lombok.ToString;
 public class Razred {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name="razred_odjeljenje")
 	private String razredOdjeljenje;
-    @JsonIgnore
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="razred")
-	private Set<Ucenik> ucenik;
+
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,  mappedBy="razred", orphanRemoval = true)
+	private Set<Ucenik> ucenik = new HashSet<>();
 }
 

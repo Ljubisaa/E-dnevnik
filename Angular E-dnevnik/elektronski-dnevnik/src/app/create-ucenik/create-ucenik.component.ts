@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ucenik } from '../ucenik';
 import { UcenikService } from '../ucenik.service';
 
 @Component({
@@ -10,7 +9,16 @@ import { UcenikService } from '../ucenik.service';
 })
 export class CreateUcenikComponent implements OnInit {
 
-  ucenik: Ucenik = new Ucenik();
+
+  ucenik: any = {
+    ime: '',
+    prezime: '',
+    usmenaOcjena: '',
+    pismenaOcjena: '',
+    razred: {
+      razredOdjeljenje: ''
+    }
+  }
 
   constructor(private ucenikService: UcenikService,
     private router: Router) { }
@@ -18,23 +26,23 @@ export class CreateUcenikComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUcenik(){
-    this.ucenikService.createUcenik(this.ucenik).subscribe(data =>{
+  saveUcenik() {
+    this.ucenikService.createUcenik(this.ucenik).subscribe(data => {
       console.log(data);
-      },
-    error => console.log(error));
+    },
+      error => console.log(error));
     this.goToUceniciList();
   }
 
-  goToUceniciList(){
+  goToUceniciList() {
     this.router.navigate(['/ucenici']);
-    }
+  }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.ucenik);
     this.saveUcenik();
   }
 
-  
+
 
 }

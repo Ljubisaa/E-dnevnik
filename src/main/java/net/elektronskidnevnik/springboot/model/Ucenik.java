@@ -1,12 +1,16 @@
 package net.elektronskidnevnik.springboot.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +24,7 @@ import lombok.ToString;
 public class Ucenik {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String ime;
 	private String prezime;
@@ -29,8 +33,7 @@ public class Ucenik {
 	private Double zakljucenaOcjena;
 	private boolean zakljucena;
 
-	@ManyToOne
-	@JoinColumn(name = "razred_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Razred razred;
 
 }
