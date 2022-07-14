@@ -35,3 +35,7 @@ build/
 .classpath
 .factorypath
 .project
+.mvn/wrapper
+.mvnw
+.mvnw.cmd
+.pom.xml
