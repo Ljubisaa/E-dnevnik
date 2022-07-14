@@ -39,3 +39,6 @@ build/
 .mvnw
 .mvnw.cmd
 .pom.xml
+.jar
+.war
+.properties
