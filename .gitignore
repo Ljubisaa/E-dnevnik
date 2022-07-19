@@ -144,3 +144,4 @@ pom.xml
 mvnw
 mvnw.cmd
 .mvn/wrapper
+/src/main/resources
